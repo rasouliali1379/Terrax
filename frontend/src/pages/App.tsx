@@ -20,7 +20,7 @@ const App = () => (
                     <Route path="/referral" element={<ReferralPage/>}/>
                     <Route path="/statistic" element={<StatisticPage/>}/>
                 </Route>
-                <Route path="/test-tma" errorElement={<ErrorPage/>}>
+                <Route path="/Terrax" errorElement={<ErrorPage/>}>
                     <Route index element={<Navigate to="/home" replace/>}/>
                 </Route>
             </Routes>
