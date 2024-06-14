@@ -1,0 +1,72 @@
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+}
+
+.fade-out {
+    position: absolute;
+    font-size: 2em;
+    color: #6c6c6c;
+    animation: fadeOut 1.5s forwards;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+}
+
+.counter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 2
+}
+
+.empty-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.counter-label {
+    font-size: 3em;
+    color: #000000;
+    margin: 8px;
+}
+
+.counter-icon {
+    height: 45px;
+    width: 45px;
+    margin: 8px;
+
+}
