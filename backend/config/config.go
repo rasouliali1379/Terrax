@@ -1,26 +1,52 @@
 package config
 
 import (
-	"fmt"
 	"github.com/spf13/viper"
+	"strings"
 )
 
+var conf *Config
+
 type Config struct {
-	MongoDB MongoDB
+	Env      string   `yaml:"env"`
+	MongoDB  MongoDB  `yaml:"mongodb"`
+	Http     Http     `yaml:"http"`
+	Telegram Telegram `yaml:"telegram"`
+}
+
+type Http struct {
+	Host string `yaml:"host"`
+	Port string `yaml:"port"`
 }
 
 type MongoDB struct {
-	Host     string
-	Port     uint64
-	User     string
-	Password string
+	Host     string `yaml:"host"`
+	Port     uint64 `yaml:"port"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
+	Database string `yaml:"database"`
 }
 
-func init() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("../")
-	if err := viper.ReadInConfig(); err != nil {
-		panic(fmt.Errorf("fatal error config file: %w", err))
+type Telegram struct {
+	BotToken string `yaml:"botToken"`
+}
+
+func Init() {
+	v := viper.New()
+	v.SetConfigType("yaml")
+	v.AddConfigPath(".")
+	v.SetEnvKeyReplacer(strings.NewReplacer(`.`, `_`))
+
+	_ = v.ReadInConfig()
+
+	var c Config
+	if err := v.Unmarshal(&c); err != nil {
+		panic(err)
 	}
+
+	conf = &c
+}
+
+func C() *Config {
+	return conf
 }

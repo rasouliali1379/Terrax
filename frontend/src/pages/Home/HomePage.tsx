@@ -1,10 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import RoundButton from "../../components/RoundButton/RoundButton.tsx";
 import coinImg from '../../assets/coin.svg'
 import '@styles/home-page.css'
 import Counter from "@/pages/Home/components/Counter.tsx";
 
 const HomePage = () => {
+    useEffect(() => {
+
+    }, []);
     const [counter, setCounter] = useState(0);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

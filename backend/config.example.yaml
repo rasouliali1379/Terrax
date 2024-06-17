@@ -1,0 +1,15 @@
+env: "dev"
+
+mongodb:
+  host: "localhost"
+  port: 27017
+  user: "admin"
+  password: "admin"
+  database: "terrax"
+
+http:
+  host: "localhost"
+  port: "8080"
+
+telegram:
+  botToken:
