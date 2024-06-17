@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import RoundButton from "../../components/RoundButton/RoundButton.tsx";
 import coinImg from '../../assets/coin.svg'
 import '@styles/home-page.css'
@@ -8,12 +8,9 @@ import {retrieveLaunchParams} from "@tma.js/sdk";
 const HomePage = () => {
     const {initDataRaw} = retrieveLaunchParams();
 
-    useEffect(() => {
-
-    }, []);
     const [counter, setCounter] = useState(0);
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         setCounter(prev => prev + 1);
 
         const button = e.currentTarget;
@@ -32,7 +29,9 @@ const HomePage = () => {
             button.removeChild(fadeOutText);
         }, 1000);
 
-        fetch(import.meta.env.TERRAX_API_BASE_URL, {
+        const baseUrl = import.meta.env.TERRAX_API_BASE_URL || process.env.TERRAX_API_BASE_URL
+
+        await fetch(baseUrl, {
             method: 'POST',
             headers: {
                 Authorization: `tma ${initDataRaw}`
