@@ -14,7 +14,8 @@ func Init() (*mongo.Database, terminator.Func) {
 
 	slog.Info("Initializing MongoDB database")
 
-	client, err := mongo.Connect(context.Background(),
+	client, err := mongo.Connect(
+		context.Background(),
 		options.Client().
 			ApplyURI(fmt.Sprintf("mongodb://%s:%d/", config.C().MongoDB.Host, config.C().MongoDB.Port)).
 			SetAuth(options.Credential{Username: config.C().MongoDB.User, Password: config.C().MongoDB.Password}),

@@ -21,16 +21,16 @@ func NewProfileRepo(db *mongo.Database) ports.ProfileRepository {
 }
 
 func (u ProfileRepository) Get(c context.Context, userID uint64) (*aggregate.Profile, error) {
-	filter := bson.D{{"user_id", userID}}
+	filter := bson.M{"user.user_id": userID}
 
-	var profile *aggregate.Profile
-	if err := u.db.Collection("profiles").FindOne(c, filter).Decode(profile); err != nil {
+	var profile aggregate.Profile
+	if err := u.db.Collection("profiles").FindOne(c, filter).Decode(&profile); err != nil {
 		if errors.Is(err, mongo.ErrNoDocuments) {
 			return nil, nil
 		}
 		return nil, err
 	}
-	return profile, nil
+	return &profile, nil
 }
 
 func (u ProfileRepository) New(c context.Context, user *domain.User) error {

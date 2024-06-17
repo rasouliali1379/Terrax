@@ -21,8 +21,13 @@ func (a AppService) GetUserData(c context.Context, user *domain.User) (*aggregat
 		return nil, err
 	}
 
-	if user == nil {
+	if profile == nil {
 		if err := a.profileRepo.New(c, user); err != nil {
+			return nil, err
+		}
+
+		profile, err = a.profileRepo.Get(c, user.UserID)
+		if err != nil {
 			return nil, err
 		}
 	}

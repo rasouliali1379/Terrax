@@ -7,5 +7,5 @@ import (
 )
 
 type AppService interface {
-	GetUserData(c context.Context, user *domain.User) (*aggregate.UserData, error)
+	GetUserData(c context.Context, user *domain.User) (*aggregate.Profile, error)
 }
