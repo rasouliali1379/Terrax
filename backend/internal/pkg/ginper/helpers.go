@@ -75,8 +75,8 @@ func NoContentWithError(c *gin.Context, e error) {
 	c.AbortWithStatus(http.StatusNoContent)
 }
 
-func Forbidden(c *gin.Context, e error) {
-	c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": e.Error()})
+func Forbidden(c *gin.Context, e string) {
+	c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": e})
 }
 
 func Unauthorized(c *gin.Context, e string) {

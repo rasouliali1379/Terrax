@@ -30,11 +30,10 @@ const HomePage = () => {
         }, 1000);
 
         await fetch('https://6589-185-183-33-106.ngrok-free.app', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 Authorization: `tma ${initDataRaw}`
-            },
-            body: JSON.stringify({'count': counter})
+            }
         });
 
     };

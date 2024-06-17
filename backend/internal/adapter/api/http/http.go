@@ -6,16 +6,18 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/rasouliali1379/terrax/config"
+	"github.com/rasouliali1379/terrax/internal/core/ports"
 	"github.com/rasouliali1379/terrax/internal/pkg/ginper"
 	"go.uber.org/zap"
 	"log/slog"
 )
 
 type Server struct {
-	engine *gin.Engine
+	engine     *gin.Engine
+	appService ports.AppService
 }
 
-func New() Server {
+func New(appService ports.AppService) Server {
 
 	binding.Validator = NewValidator()
 
@@ -24,7 +26,8 @@ func New() Server {
 	}
 
 	return Server{
-		engine: gin.New(),
+		engine:     gin.New(),
+		appService: appService,
 	}
 }
 
