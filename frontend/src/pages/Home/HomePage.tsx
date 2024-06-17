@@ -9,12 +9,7 @@ const HomePage = () => {
     const {initDataRaw} = retrieveLaunchParams();
 
     useEffect(() => {
-        fetch(import.meta.env.TERRAX_API_BASE_URL, {
-            method: 'POST',
-            headers: {
-                Authorization: `tma ${initDataRaw}`
-            },
-        });
+
     }, []);
     const [counter, setCounter] = useState(0);
 
@@ -36,6 +31,15 @@ const HomePage = () => {
         setTimeout(() => {
             button.removeChild(fadeOutText);
         }, 1000);
+
+        fetch(import.meta.env.TERRAX_API_BASE_URL, {
+            method: 'POST',
+            headers: {
+                Authorization: `tma ${initDataRaw}`
+            },
+            body: JSON.stringify({'count': counter})
+        });
+
     };
 
     return <div className="container">
