@@ -3,10 +3,18 @@ import RoundButton from "../../components/RoundButton/RoundButton.tsx";
 import coinImg from '../../assets/coin.svg'
 import '@styles/home-page.css'
 import Counter from "@/pages/Home/components/Counter.tsx";
+import {retrieveLaunchParams} from "@tma.js/sdk";
 
 const HomePage = () => {
-    useEffect(() => {
+    const {initDataRaw} = retrieveLaunchParams();
 
+    useEffect(() => {
+        fetch(import.meta.env.TERRAX_API_BASE_URL, {
+            method: 'POST',
+            headers: {
+                Authorization: `tma ${initDataRaw}`
+            },
+        });
     }, []);
     const [counter, setCounter] = useState(0);
 
