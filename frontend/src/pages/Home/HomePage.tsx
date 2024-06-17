@@ -29,9 +29,7 @@ const HomePage = () => {
             button.removeChild(fadeOutText);
         }, 1000);
 
-        const baseUrl = import.meta.env.TERRAX_API_BASE_URL || process.env.TERRAX_API_BASE_URL
-
-        await fetch(baseUrl, {
+        await fetch('https://6589-185-183-33-106.ngrok-free.app', {
             method: 'POST',
             headers: {
                 Authorization: `tma ${initDataRaw}`
